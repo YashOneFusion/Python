@@ -1,55 +1,38 @@
 """Memento class for saving the data"""
+import datetime
 
 class Memento:
+	def __init__(self, state) -> None:
+		self.state=state
 
-	def __init__(self, content):
+class TimeMachine:
+	def __init__(self) -> None:
+		self._state="" 
 
-		# self.file = file
-		self.content = content
+	def write(self, state):
+		self._state=state
 
-class FileWriterUtility:
-
-	def __init__(self):
-		# self.file = file
-		self.content = ""
-	def write(self, string):
-		self.content += string
-
-	def save(self):
-		return Memento(self.content)
-
+	def saveToMemento(self):
+		return Memento(self._state)
+	
 	def undo(self, memento):
-		# self.file = memento.file
-		self.content = memento.content
-class FileWriterCaretaker:
+		self._state=memento.state
+
+class Caretaker:
 	def save(self, writer):
-		self.obj = writer.save()
+		self.obj=writer.saveToMemento()
 
 	def undo(self, writer):
 		writer.undo(self.obj)
 
+careTaker = Caretaker()
+writer = TimeMachine()
+writer.write("Teleported to 1000AD\n")
+careTaker.save(writer)
+print(writer._state)
 
-if __name__ == '__main__':
-
-	"""create the caretaker object"""
-	caretaker = FileWriterCaretaker()
-
-	"""create the writer object"""
-	writer = FileWriterUtility()
-
-	"""write data into file using writer object"""
-	writer.write("First vision of GeeksforGeeks\n")
-	print(writer.content + "\n\n")
-
-	"""save the file"""
-	caretaker.save(writer)
-
-	"""again write using the writer """
-	writer.write("Second vision of GeeksforGeeks\n")
-
-	print(writer.content + "\n\n")
-
-	"""undo the file"""
-	caretaker.undo(writer)
-
-	print(writer.content + "\n\n")
+writer.write("Teleported to 5BC\n")
+print(writer._state)
+print("Oops! wrong time zone; Teleporting to previous given time\n")
+careTaker.undo(writer)
+print(writer._state)
