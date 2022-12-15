@@ -1,5 +1,5 @@
 """Memento class for saving the data"""
-import datetime
+from datetime import time
 
 class Memento:
 	def __init__(self, state) -> None:
@@ -7,7 +7,8 @@ class Memento:
 
 class TimeMachine:
 	def __init__(self) -> None:
-		self._state="" 
+		self._state= "2022"
+		Memento(self._state)
 
 	def write(self, state):
 		self._state=state
