@@ -9,23 +9,22 @@ class AbstractBaseClass(ABC):
         self.overridableFunc()
 
     def base_operation(self) -> None:
-        print("Starting template operation")
+        print("Starting template operation\n")
     
     @abstractmethod
     def overridableFunc(self):
         pass
 
 
-class ConcreteClass1(AbstractBaseClass):
+class ConvertToZIP(AbstractBaseClass):
     def overridableFunc(self):
-        print("Fucntion Overriden in ConcClass 1")
-class ConcreteClass2(AbstractBaseClass):
+        print("Converting the file to ZIP\n\n")
+class ConvertToRAR(AbstractBaseClass):
     def overridableFunc(self):
-        print("Function overridden in ConcClass 2")
+        print("Converting the file to RAR\n\n")
 
 def client(abstract_class: AbstractBaseClass) -> None:
     abstract_class.template()
 
-client(ConcreteClass1())
-print("\n----------\n")
-client(ConcreteClass2())
+client(ConvertToZIP())
+client(ConvertToRAR())

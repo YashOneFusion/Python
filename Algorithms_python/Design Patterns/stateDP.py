@@ -9,7 +9,8 @@ class interface:
 
 class StateB(interface):
     def __init__(self) -> None:
-        print('Called state from State A\n')
+        print('Called state from State A')
+        print('Current State : B\n')
         print('Switching to State Quit')
         self.state=StateQuit()
 
