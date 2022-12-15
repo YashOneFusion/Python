@@ -9,12 +9,19 @@ class interface:
 
 class StateB(interface):
     def __init__(self) -> None:
-        print('Called state from State A')
-        self.state=StateA()
+        print('Called state from State A\n')
+        print('Switching to State Quit')
+        self.state=StateQuit()
 
 class StateA(interface):
     def __init__(self) -> None:
-        print('Called state from B')
+        print("Current state: A")
+        print('Switching to B\n')
         self.state=StateB()
 
+class StateQuit(interface):
+    def __init__(self) -> None:
+        print("Quitting...\n")
+
+print("\n Example of Switching to different states:\n")
 StateA()
