@@ -5,7 +5,7 @@ class text:
     def render(self):
         return self._text
 
-class underline:
+class underline(text):
     def __init__(self, text):
         self._text = text
     def render(self):
